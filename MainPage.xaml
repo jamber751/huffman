@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Algo9.MainPage">
+
+    <VerticalStackLayout>
+        <Grid ColumnDefinitions="3*,7*">
+            <VerticalStackLayout Grid.Column="0">
+                <Border>
+                    <VerticalStackLayout Spacing="10">
+
+                        <Label Text="Добавление символов" HorizontalOptions="Center"/>
+                        <Grid ColumnDefinitions="5*, 5*" RowDefinitions="Auto, Auto" ColumnSpacing="10">
+                            <Entry x:Name="symbolEntry" Grid.Column="0" Grid.Row="0" Placeholder="Символ"/>
+                            <Entry x:Name="freqEntry" Grid.Column="1" Grid.Row="0" Placeholder="Частота"/>
+                            <Button Grid.ColumnSpan="2" Grid.Row="1" x:Name="addSymbol" Clicked="addSymbol_Clicked" Text="Добавить"/>
+                        </Grid>
+                        <Grid ColumnDefinitions="5*, 5*" VerticalOptions="Center">
+                            <Label Grid.Column="0" Text="Символ" HorizontalOptions="Center"/>
+                            <Label Grid.Column="1" Text="Частота" HorizontalOptions="Center"/>
+                        </Grid>
+                        <ListView x:Name="symbolListView" ItemTapped="symbolListView_ItemTapped">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid ColumnDefinitions="5*, 5*" VerticalOptions="Center">
+                                            <Label Grid.Column="0" Text="{Binding Char}" HorizontalOptions="Center"/>
+                                            <Label Grid.Column="1" Text="{Binding Freq}" HorizontalOptions="Center"/>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </Grid>
+        <Label x:Name="test"/>
+    </VerticalStackLayout>
+
+</ContentPage>
