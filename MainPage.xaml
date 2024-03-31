@@ -3,29 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Algo9.MainPage">
 
-    <VerticalStackLayout>
-        <Grid ColumnDefinitions="3*,7*">
-            <VerticalStackLayout Grid.Column="0">
-                <Border>
-                    <VerticalStackLayout Spacing="10">
+    <VerticalStackLayout Margin="10">
+        <Grid ColumnDefinitions="3*,7*" ColumnSpacing="10">
 
-                        <Label Text="Добавление символов" HorizontalOptions="Center"/>
-                        <Grid ColumnDefinitions="5*, 5*" RowDefinitions="Auto, Auto" ColumnSpacing="10">
-                            <Entry x:Name="symbolEntry" Grid.Column="0" Grid.Row="0" Placeholder="Символ"/>
-                            <Entry x:Name="freqEntry" Grid.Column="1" Grid.Row="0" Placeholder="Частота"/>
+            <VerticalStackLayout Grid.Column="0">
+                <Border Padding="20">
+                    <VerticalStackLayout Spacing="30">
+
+                        <Label Text="Добавление символов" HorizontalOptions="Center" FontSize="24"/>
+
+                        <Grid ColumnDefinitions="5*, 5*" RowDefinitions="Auto, Auto, Auto" ColumnSpacing="10" RowSpacing="20">
+                            <Entry x:Name="symbolEntry" Grid.Column="0" Grid.Row="0" Placeholder="Символ" HorizontalTextAlignment="Center" MaxLength="1"/>
+                            <Entry x:Name="freqEntry" Grid.Column="1" Grid.Row="0" Placeholder="Частота" HorizontalTextAlignment="Center"/>
                             <Button Grid.ColumnSpan="2" Grid.Row="1" x:Name="addSymbol" Clicked="addSymbol_Clicked" Text="Добавить"/>
+                            <Button Grid.ColumnSpan="2" Grid.Row="2" x:Name="confirmSymbols" Clicked="confirmSymbols_Clicked" Text="Рассчитать"/>
                         </Grid>
-                        <Grid ColumnDefinitions="5*, 5*" VerticalOptions="Center">
+
+                        <Grid ColumnDefinitions="3*, 3*, 3*" VerticalOptions="Center">
                             <Label Grid.Column="0" Text="Символ" HorizontalOptions="Center"/>
                             <Label Grid.Column="1" Text="Частота" HorizontalOptions="Center"/>
+                            <Label Grid.Column="2" Text="Код" HorizontalOptions="Center"/>
                         </Grid>
-                        <ListView x:Name="symbolListView" ItemTapped="symbolListView_ItemTapped">
+
+                        <ListView x:Name="symbolListView" ItemTapped="symbolListView_ItemTapped" MinimumHeightRequest="500">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <Grid ColumnDefinitions="5*, 5*" VerticalOptions="Center">
+                                        <Grid ColumnDefinitions="3*, 3*, 4*" VerticalOptions="Center">
                                             <Label Grid.Column="0" Text="{Binding Char}" HorizontalOptions="Center"/>
                                             <Label Grid.Column="1" Text="{Binding Freq}" HorizontalOptions="Center"/>
+                                            <Label Grid.Column="2" Text="{Binding Code}" HorizontalOptions="Center"/>
                                         </Grid>
                                     </ViewCell>
                                 </DataTemplate>
@@ -34,10 +41,26 @@
 
                     </VerticalStackLayout>
                 </Border>
-
             </VerticalStackLayout>
-        </Grid>
-        <Label x:Name="test"/>
-    </VerticalStackLayout>
 
+            <VerticalStackLayout Grid.Column="1" Spacing="30">
+                <Border>
+                    <Editor x:Name="textEditor" HeightRequest="250" Placeholder="Текст"/>
+                </Border>
+
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                    <Label Text="⇓"/>
+                    <Switch x:Name="decodeSwitch" IsToggled="False"/>
+                    <Label Text="⇑"/>
+                </HorizontalStackLayout>
+
+                <Border>
+                    <Editor x:Name="codeEditor" HeightRequest="250" Placeholder="Код"/>
+                </Border>
+
+                <Button x:Name="codingAction" Clicked="codingAction_Clicked" Text="Перевести"/>
+            </VerticalStackLayout>
+
+        </Grid>
+    </VerticalStackLayout>
 </ContentPage>
