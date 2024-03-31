@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 
 public partial class MainPage : ContentPage
 {
-
     public class Node
     {
         public int Freq { get; set; }
@@ -144,8 +143,7 @@ public partial class MainPage : ContentPage
     void addSymbol_Clicked(System.Object sender, System.EventArgs e)
     {
         foreach (Symbol symbol in symbols) symbol.Code = string.Empty;
-
-        //symbolListView.ItemsSource = symbols;
+        symbolListView.ItemsSource = symbols;
         symbols.Add(new Symbol(char.Parse(symbolEntry.Text), int.Parse(freqEntry.Text)));
         symbolListView.ScrollTo(symbols[symbols.Count - 1], 0, true);
         symbolEntry.Text = string.Empty;
